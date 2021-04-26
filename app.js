@@ -1,6 +1,5 @@
 const express = require('express');
 const fetch = require('node-fetch');
-var MD5 = require("crypto-js/md5");
 const app = express();
 const client = require("@mailchimp/mailchimp_marketing");
 app.use(express.urlencoded({
@@ -19,27 +18,14 @@ var first = req.body.fname;
   var second = req.body.lname;
   var email = req.body.email;
 
+
 client.setConfig({
     apiKey: "6a2674aaf6c06770a01fb5987da7cebd-us1",
     server: "us1",
   });
 
   if (email) {
-//   var bak = MD5(email).toString();
     const run = async () => {
-      //     // const response = await
-      // ///get info
-      //    client.lists.getListMember(
-      //       "9f060e7e2b",
-      //       // "C560B5F32ED062EAC9BCDEB863E5A498"
-      //       bak
-      //     )
-      //     .then(result => {
-      //       // console.log(result);
-      //       if(result.text.status !== "200"){
-      //         res.sendFile(__dirname + "/failure.html")
-      //       }else{
-      //         // const run = async () => {
       client.lists.addListMember("9f060e7e2b", {
           email_address: email,
           status: "subscribed",
@@ -73,13 +59,3 @@ app.post("/success", function(req, res) {
 app.listen(process.env.PORT || 3000, function() {
   console.log("This Server is running just fine.");
 });
-
-// mailchimp api key
-//6a2674aaf6c06770a01fb5987da7cebd-us1
-
-
-// list/audience Id
-// 9f060e7e2b
-
-// test scripts
-//"test": "echo \"Error: no test specified\" && exit 1"
