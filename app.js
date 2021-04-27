@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const fetch = require('node-fetch');
 const app = express();
@@ -20,13 +21,13 @@ var first = req.body.fname;
 
 
 client.setConfig({
-    apiKey: "6a2674aaf6c06770a01fb5987da7cebd-us1",
+    apiKey: process.env.MAILCHIMP_API_KEY,
     server: "us1",
   });
 
   if (email) {
     const run = async () => {
-      client.lists.addListMember("9f060e7e2b", {
+      client.lists.addListMember(process.env.AUDIENCE_ID, {
           email_address: email,
           status: "subscribed",
           merge_fields: {
