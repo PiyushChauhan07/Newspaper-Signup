@@ -7,6 +7,7 @@ app.use(express.urlencoded({
   extended: true
 }));
 
+
 //local files in our project are called static files. and to serve these files on our server we need to use static functon
 app.use(express.static("public")); //to send the local information or static information like css file and images to the servers.
 
@@ -19,7 +20,7 @@ var first = req.body.fname;
   var second = req.body.lname;
   var email = req.body.email;
 
-
+///////////////////      Mailchip Add a member function         ////////////////////////
 client.setConfig({
     apiKey: process.env.MAILCHIMP_API_KEY,
     server: "us1",
